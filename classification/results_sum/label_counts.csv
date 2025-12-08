@@ -1,0 +1,17 @@
+label,gt_support,pred_support
+ai_integration,83,208
+architecture,223,239
+build_run,207,215
+config_environment,128,177
+debugging,81,84
+deployment_operations,60,79
+development_process,215,176
+documentation_references,85,180
+implementation_details,235,253
+maintainability,146,112
+performance,47,69
+project_management,18,20
+security,46,77
+system_overview,195,197
+test,247,260
+ui_ux,29,41

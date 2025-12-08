@@ -1,0 +1,374 @@
+\par
+\smallskip
+\textbf{System Overview. } These instructions provide a general project or system overview and describe key features. We observed these instructions in \cntGenSysOverview\% of files.
+\autoref{lst:project-overview} shows an example.\footnote{\url{https://github.com/FluidGroup/Brightroom/blob/main/CLAUDE.md}} This example describes the project's identity, mechanism, and functionality.
+
+
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Project Overview},label=lst:project-overview]
+## Project Overview
+Brightroom is a composable image editor library for iOS, 
+powered by Metal for high-performance image processing. 
+It provides both low-level image editing capabilities 
+and high-level UI components.
+\end{lstlisting}
+
+
+
+
+
+\par
+\smallskip
+\textbf{AI Integration. } This instruction type contains notes for integrating with or interacting with agentic coding tools. We observed these instructions in \cntClaudeAIIntegration\% of files. 
+\autoref{lst:ai-integration} shows an example.\footnote{\url{https://github.com/craft-code-club/blog-c3/blob/main/.github/copilot-instructions.md}}
+This example provides a specific role and expertise for the agent, defining it as an expert in React, Next.js, and content management for technology community websites and blogs. It specializes in helping with the Craft Code Club website and blog platform, offering guidance on development, content management, SEO optimization, and performance tuning.
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for AI Integration}, label=lst:ai-integration]
+# React & Next.js Community Technology Blog Expert Profile
+You are an expert in React, Next.js, and content management for technology community websites and blogs. You specialize in helping with the Craft Code Club website and blog platform, providing guidance on development, content management, SEO optimization, and performance tuning for this software engineering community.
+\end{lstlisting}
+
+
+
+\par
+\smallskip
+\textbf{Documentation. } This instruction type lists supplementary documents, links, or references for additional context. We observed these instructions in \cntDocRefs\% of files.
+\autoref{lst:documentation1} shows an example.\footnote{\url{https://github.com/skip-mev/skip-go/blob/main/AGENTS.md}}
+This example provides specific documentation requirements: adding inline comments to explain non-obvious code, including JSDoc comments for public APIs, documenting complex types with examples, and providing usage examples in hook file comments.
+
+Additionally, \autoref{lst:documentation2} demonstrates how to document updates to the Agentic Coding Manifest itself, instructing AI agents to update the file whenever they learn new project information that future tasks might need, noting that keeping guidelines current helps everyone work more effectively.\footnote{\url{https://github.com/zoonk/zoonk/blob/main/AGENTS.md}}
+
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Documentation}, label=lst:documentation1]
+### Documentation Requirements
+- Complex Logic: Add inline comments explaining non-obvious code
+- Public APIs: Include JSDoc comments for exported functions
+- Type Definitions: Document complex types with examples
+- Hook Usage: Provide usage examples in hook file comments
+\end{lstlisting}
+\vspace{-1em}
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Documentating how to update Agentic Coding Manifest itself}, label=lst:documentation2]
+Updating this document
+AI agents should update this file whenever they learn something new about this project that future tasks might need to take into account. Keeping the guidelines current helps everyone work more effectively.
+\end{lstlisting}
+
+\par
+\smallskip
+\textbf{Architecture.} This instruction type describes the high-level structure, design principles, or key components of the system's architecture. We observed these instructions in \cntArchitecture\% of files.
+\autoref{lst:architecture} shows an example.\footnote{\url{https://github.com/puemos/hls-downloader/blob/master/AGENTS.md}}
+This example provides architectural structure, defining the project as a pnpm workspace with several packages under \texttt{src/}. It details the roles of packages like core (shared business logic in TypeScript), background (initializes the extension store and wires services), popup (React UI), and design-system (UI component library). It mandates that business logic should reside in src/core and be implemented as use-cases orchestrated through epics, and UI components should come from \texttt{src/design-system/src}.
+
+\begin{lstlisting}[style=academicstyle,caption={Example Instruction for Architecture},label=lst:architecture]
+## Architecture
+- The project is a pnpm workspace with several packages under `src/`:
+  - `core` - shared business logic implemented in TypeScript. Source files live in `src/core/src` and compile to `src/core/lib`.
+  - `background` - initializes the extension store and wires services such as `IndexedDBFS`, `FetchLoader` and `M3u8Parser`.
+  - `popup` - React user interface for interacting with playlists and downloads.
+  - `design-system` - UI component library consumed by the popup.
+  - `assets` - extension manifest and icons.
+- Business logic should reside in `src/core`. Implement new features as
+  `use-cases` under `src/core/src/use-cases` and orchestrate them through epics
+  in `src/core/src/controllers`. Background scripts should only coordinate these
+  functions.
+- UI components should come from `src/design-system/src` to keep styling
+  consistent across the extension.
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{Implementation Details. } This instruction type provides specific details for implementing code or system components, including coding style guidelines. We observed these instructions in \cntImplDetails\% of files. \autoref{lst:implementation-details} shows an example.\footnote{\url{https://github.com/samuelstevens/biobench/blob/main/AGENTS.md}}
+This example provides code style guidelines, such as keeping code simple, explicit, typed, test-driven, and ready for automation. It also specifies constraints like using only ASCII characters in source files, the format for docstrings, preferring explicit constructs (e.g., no wildcard imports), referencing modules by alias, and using decorators like @beartype.beartype. Furthermore, it details naming conventions for classes (CamelCase), functions/variables (snake\_case), constants (UPPER\_SNAKE), and file descriptors/paths.
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Implementation Details}, label=lst:implementation-details]
+# Code Style
+
+- Keep code simple, explicit, typed, test-driven, and ready for automation.
+- Source files are UTF-8 but must contain only ASCII characters. Do not use smart quotes, ellipses, em-dashes, emoji, or other non-ASCII glyphs.
+- Docstrings are a single unwrapped paragraph. Rely on your editor's soft-wrap.
+- Prefer explicit over implicit constructs. No wildcard imports.
+...
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{Build and Run. } This instruction type outlines the process for compiling source code and running the application, often including key commands. This was the most prevalent category. We observed these instructions in \cntBuildRun\% of files.
+\autoref{lst:build-and-run} shows an example.\footnote{\url{https://github.com/Pedal-Intelligence/saypi-userscript/blob/main/CLAUDE.md}}
+This example provides specific npm build commands, such as npm run dev (for WXT dev server with live reload), npm run dev:firefox (for Firefox MV2 dev session), npm run build (for production build), and npm run build:firefox (for building and packaging for Firefox).
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Build and Run}, label=lst:build-and-run]
+## Build Commands
+- `npm run dev` - WXT dev server with live reload for Chromium targets (runs manifest update first)
+- `npm run dev:firefox` - Firefox MV2 dev session (`wxt --browser firefox --mv2`; opens a temporary private profile)
+- `npm run build` - Production build (validates locale files, copies ONNX files, updates manifest)
+- `npm run build:firefox` - Build and package for Firefox
+...
+\end{lstlisting}
+
+
+
+\par
+\smallskip
+\textbf{Testing. } This instruction type details the procedures and commands for executing automated tests. We observed these instructions in \cntTest\% of files.
+\autoref{lst:testing} shows an example.\footnote{\url{https://github.com/SwitchbackTech/compass/blob/main/AGENTS.md}}
+This example provides guidelines for writing tests using DOM and user interactions rather than internal implementation details, commands for running different test suites with their execution times, and warnings about environment-specific failures and testing constraints.
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Testing}, label=lst:testing]
+### Testing
+
+### Writing Tests in `@compass/web`
+
+- Write tests the way a user would use the application by using the DOM and user interactions with `@testing-library/user-event` rather than internal implementation details of React components.
+- Do NOT use `data-` attributes or CSS selectors to locate elements. Use semantic locators and roles instead.
+
+#### Running Tests
+
+- **Core tests**: `yarn test:core` - Takes ~2 seconds. NEVER CANCEL. Always tests pass.
+- **Web tests**: `yarn test:web` - Takes ~15 seconds. NEVER CANCEL. All tests pass
+- **Full test suite**: `yarn test` - Takes ~18 seconds but FAILS in restricted environments due to MongoDB binary download from fastdl.mongodb.org
+  - Use individual package tests instead: `yarn test:core` and `yarn test:web`
+- **DO NOT** attempt to test login functionality without proper backend setup
+- **ALWAYS** run `yarn test:core` and `yarn test:web` and `yarn test:backend` after making changes
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{Configuration and Environments. } This instruction type provides instructions for configuring the system and setting up the development or production environment. We observed these instructions in \cntConfigEnv\% of files.
+\autoref{lst:configuration} shows an example.\footnote{\url{https://github.com/basher83/ProxmoxMCP/blob/main/CLAUDE.md}}
+This example provides commands for environment setup, including setting up git configuration (cp example.gitconfig .git/config), creating and activating a virtual environment (uv venv, source .venv/bin/activate), and installing development dependencies (uv pip install -e ``.[dev]'').
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Configuration and Environments}, label=lst:configuration]
+## Development Commands
+### Environment Setup
+```bash
+# Set up git configuration (recommended for development)
+cp example.gitconfig .git/config
+git config user.name "Your Name"
+git config user.email "your.email@example.com"
+
+# Create and activate virtual environment
+uv venv
+source .venv/bin/activate  # Linux/macOS
+.\.venv\Scripts\Activate.ps1  # Windows
+
+# Install dependencies with development tools
+uv pip install -e ".[dev]"
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{DevOps (Deployment and Operation). } This instruction type covers procedures for software deployment, release, and operations, such as CI/CD pipelines. We observed these instructions in \cntDeployOps\% of files. \autoref{lst:devops} shows an example.\footnote{\url{https://github.com/EricLBuehler/mistral.rs/blob/master/AGENTS.md\#ci-parity}}
+This example provides information on CI Parity, detailing the CI pipeline defined in .github/workflows/ci.yml and listing various checks included, such as cargo check, cargo test, code formatting checks, cargo clippy -D warnings, and a typos check.
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for DevOps}, label=lst:devops]
+## CI Parity
+The CI pipeline is defined in `.github/workflows/ci.yml` and includes:
+  - `cargo check` for all targets
+  - `cargo test` on core crates
+  - `cargo fmt -- --check`
+  - `cargo clippy -D warnings`
+  - `cargo doc`
+  - Typos check (`crate-ci/typos`)
+\end{lstlisting}
+
+
+
+
+
+\par
+\smallskip
+\textbf{Development Process. }This kind of instruction defines the development workflow, including guidelines for version control systems like Git. We observed these instructions in \cntDevProcess\% of files. 
+\autoref{lst:process} outlines an example of these kinds of instructions.\footnote{\url{https://github.com/eduzen/website/blob/main/AGENTS.md}} 
+In this example, the project provides Commit \& Pull Request Guidelines, specifying that commits must use the imperative mood and prefer Conventional Commits (\eg feat:, fix:), requiring developers to run quality checks (just fmt, just mypy, just test) before pushing, and outlining requirements for PRs (summary, linked issues, screenshots, migration notes, and passing CI).
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Development Process}, label=lst:process]
+## Commit & Pull Request Guidelines
+- Commits: imperative mood; prefer Conventional Commits (e.g., `feat:`, `fix:`, `docs:`) with a clear scope.
+- Before pushing: run `just fmt`, `just mypy`, and `just test`; ensure Django checks pass.
+- PRs: include summary, linked issues, screenshots for UI changes, and migration notes when applicable. CI must be green.
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{Project Management. }This kind of instruction relates to the planning, organization, and management of the project. We observed these instructions in \cntProjMgmt\% of files. 
+\autoref{lst:management} outlines an example of these kinds of instructions.\footnote{\url{https://github.com/reinier/dotfiles/blob/main/CLAUDE.md}} 
+In this example, the project provides guidance on the Backlog \& Future Improvements stored in the backlog/ directory, detailing its purpose (storage for enhancement plans), the required format (Markdown files with structured plans and mandatory YAML front matter), and instructs users to reference backlog items to understand context and priorities.
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Project Management}, label=lst:management]
+## Backlog & Future Improvements
+The `backlog/` directory contains planned improvements and refactoring tasks:
+- Purpose: Organized storage for enhancement plans, technical debt items, and future feature ideas
+- Format: Markdown files with structured plans including problem statements, proposed solutions, and implementation strategies
+- Front Matter: All backlog items MUST include YAML front matter with `status` (todo|in progress|done), `date_created`, and `date_modified` fields
+- Template: Use `backlog/_template.md` as a starting point for new backlog items to ensure consistent structure and required front matter
+- Usage: When suggesting improvements or picking up development work, reference backlog items to understand context and priorities
+- Current Items: 
+  - `timer-api-refactor.md` - Plan to refactor the monolithic timer-api.lua into modular components
+  - ~~`directory-watcher-system.md` - Plan for automated file organization system~~ COMPLETED
+
+When working on this repository, check the backlog directory for relevant planned improvements that could be implemented alongside current tasks.
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{Maintenance. }This kind of instruction provides guidelines for system maintenance, including strategies for improving readability, detecting and resolving bugs. We observed these instructions in \cntMaintenance\% of files. 
+\autoref{lst:maintenance} outlines an example of these kinds of instructions.\footnote{\url{https://github.com/langchain-ai/langchain/blob/master/CLAUDE.md}} 
+In this example, the project provides Core Development Principles focused on maintaining stable public interfaces, specifically advising agents to always attempt to preserve function signatures, argument positions, and names for exported methods, and listing essential checks required before making changes to public APIs.
+
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Maintenance}, label=lst:maintenance]
+## Core Development Principles
+
+### 1. Maintain Stable Public Interfaces CRITICAL
+
+**Always attempt to preserve function signatures, argument positions, and names for exported/public methods.**
+
+**Bad - Breaking Change:**
+
+```python
+def get_user(id, verbose=False):  # Changed from `user_id`
+    pass
+```
+
+**Good - Stable Interface:**
+
+```python
+def get_user(user_id: str, verbose: bool = False) -> User:
+    """Retrieve user by ID with optional verbose output."""
+    pass
+```
+
+**Before making ANY changes to public APIs:**
+
+- Check if the function/class is exported in `__init__.py`
+- Look for existing usage patterns in tests and examples
+- Use keyword-only arguments for new parameters: `*, new_param: str = "default"`
+- Mark experimental features clearly with docstring warnings (using MkDocs Material admonitions, like `!!! warning`)
+
+*Ask yourself:* "Would this change break someone's code if they used it last week?"
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{Performance. } This kind of instruction focuses on system performance, quality assurance, and potential optimizations. We observed these instructions in \cntPerformance\% of files. 
+\autoref{lst:performance} outlines an example of these kinds of instructions.\footnote{\url{https://github.com/hedoluna/fft/blob/main/CLAUDE.md}} 
+In this example, the project provides performance guidelines for React 19, explaining when automatic compiler optimizations are sufficient versus when manual optimization is needed, and listing specific considerations for maintaining optimal performance.
+
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Performance}, label=lst:performance]
+## Performance Guidelines
+
+### React 19 Optimizations
+- **Automatic optimizations**: React 19 compiler handles most memo/callback
+  optimizations
+- **When to still optimize manually**:
+  - Heavy computational functions inside components
+  - Complex object/array transformations
+  - Expensive child component renders with stable props
+  - Event handlers passed to many children
+
+### Performance Considerations
+- Avoid inline object/array creation in render
+- Avoid function components defined inside a component or other unstable
+  functions
+- Use stable references for callbacks passed as props
+- Look for unstable props or children
+- Debounce/throttle expensive operations
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{Security. }This kind of instruction addresses security considerations, vulnerabilities, or best practices for the system. This was one of the least prevalent categories, observed in only \cntSecurity\% of files. 
+\autoref{lst:security} outlines an example of these kinds of instructions.\footnote{\url{https://github.com/amun-ai/hypha/blob/main/CLAUDE.md?plain=1}} 
+In this example, the project provides details on the Security Architecture and Permission System. It highlights core principles like Workspace Isolation and Default Protection for preventing unauthorized access, and defines different Service Visibility Levels with their access permissions.
+
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for Security}, label=lst:security]
+## Security Architecture and Permission System
+
+### Core Security Principles
+
+Hypha implements a multi-layered security model with workspace isolation as the foundation. All services have default protection through workspace visibility settings, with additional fine-grained permission controls available for sensitive operations.
+
+### Default Protection: Workspace Isolation
+
+By default, all services are `protected`, meaning they are only accessible to clients within the same workspace. This provides automatic protection against unauthorized cross-workspace access without requiring explicit permission checks in every method.
+
+```python
+# Services created with default protected visibility
+interface = {
+    "config": {
+        "require_context": True,
+        "visibility": "protected",  # Default: only accessible within workspace
+    },
+    # Service methods...
+}
+```
+
+### Service Visibility Levels
+
+1. `protected` (DEFAULT) - Only accessible by clients in the same workspace
+2. `public` - Accessible by all authenticated users across workspaces
+3. `unlisted` - Same as public, accessible for all users, but not discoverable
+\end{lstlisting}
+
+
+
+
+\par
+\smallskip
+\textbf{UI/UX. }This kind of instruction contains guidelines or details concerning the user interface (UI) and user experience (UX). This was the least prevalent category overall, observed in only \cntUIUX\% of files. 
+\autoref{lst:ui} outlines an example of these kinds of instructions.\footnote{\url{https://github.com/bdougie/contributor.info/blob/main/CLAUDE.md}} 
+In this example, the project provides User Experience Standards, mandating an ``invisible, Netflix-like user experience'' where data loading and processing occur automatically in the background. The key principles include automatic data handling, subtle notifications, progressive loading, and eliminating the need for manual user intervention.
+
+
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for UI/UX}, label=lst:ui]
+## User Experience Standards
+This project follows an **invisible, Netflix-like user experience** where data loading and processing happens automatically in the background. Key principles:
+1. Database-first: Always query cached data before API calls
+2. Auto-detection: Automatically detect and fix data quality issues
+3. Subtle notifications: Keep users informed without interrupting workflow
+4. Progressive enhancement: Core functionality works immediately, enhanced features load in background
+5. No manual intervention: Users never need to click "Load Data" or understand technical details
+
+\end{lstlisting}
+
+
+\par
+\smallskip
+\textbf{Debugging. }This kind of instruction is one of the new categories added during the analysis because many cases could not be categorized into existing labels. We observed these instructions in \cntDebugging\% of files. 
+\autoref{lst:debug} outlines an example of these kinds of instructions.\footnote{\url{https://github.com/probelabs/probe/blob/main/CLAUDE.md}} 
+In this example, the project provides Debugging Tips, specifically commands like using \texttt{DEBUG=1} for verbose output, checking \texttt{error.log} for errors, using \texttt{RUST\_BACKTRACE=1} for stack traces, and profiling with \texttt{cargo flamegraph} for performance analysis.
+
+
+\begin{lstlisting}[style=academicstyle, caption={Example Instruction for UI/UX}, label=lst:debug]
+### Debugging Tips
+- Use `DEBUG=1` for verbose output
+- Check `error.log` for detailed errors
+- Use `RUST_BACKTRACE=1` for stack traces
+- Profile with `cargo flamegraph` for performance
+\end{lstlisting}

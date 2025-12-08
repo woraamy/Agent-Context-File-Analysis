@@ -1,0 +1,122 @@
+{
+  "System Overview": {
+    "precision": 0.8762376237623762,
+    "recall": 0.9030612244897959,
+    "f1-score": 0.8894472361809045,
+    "support": 196.0
+  },
+  "AI Integration": {
+    "precision": 0.32857142857142857,
+    "recall": 0.8625,
+    "f1-score": 0.47586206896551725,
+    "support": 80.0
+  },
+  "Documentation References": {
+    "precision": 0.425414364640884,
+    "recall": 0.8651685393258427,
+    "f1-score": 0.5703703703703704,
+    "support": 89.0
+  },
+  "Architecture": {
+    "precision": 0.8902439024390244,
+    "recall": 0.9690265486725663,
+    "f1-score": 0.9279661016949152,
+    "support": 226.0
+  },
+  "Implementation Details": {
+    "precision": 0.8515625,
+    "recall": 0.9276595744680851,
+    "f1-score": 0.8879837067209776,
+    "support": 235.0
+  },
+  "Build & Run": {
+    "precision": 0.8954545454545455,
+    "recall": 0.9425837320574163,
+    "f1-score": 0.9184149184149184,
+    "support": 209.0
+  },
+  "Test": {
+    "precision": 0.9135338345864662,
+    "recall": 0.9642857142857143,
+    "f1-score": 0.9382239382239382,
+    "support": 252.0
+  },
+  "Configuration & Environment": {
+    "precision": 0.639344262295082,
+    "recall": 0.9069767441860465,
+    "f1-score": 0.75,
+    "support": 129.0
+  },
+  "Deployment & Operations": {
+    "precision": 0.6375,
+    "recall": 0.8360655737704918,
+    "f1-score": 0.723404255319149,
+    "support": 61.0
+  },
+  "Project Management": {
+    "precision": 0.4,
+    "recall": 0.4444444444444444,
+    "f1-score": 0.42105263157894735,
+    "support": 18.0
+  },
+  "Development Process": {
+    "precision": 0.9213483146067416,
+    "recall": 0.7592592592592593,
+    "f1-score": 0.8324873096446701,
+    "support": 216.0
+  },
+  "Performance": {
+    "precision": 0.589041095890411,
+    "recall": 0.8958333333333334,
+    "f1-score": 0.7107438016528925,
+    "support": 48.0
+  },
+  "Security": {
+    "precision": 0.6,
+    "recall": 0.9795918367346939,
+    "f1-score": 0.7441860465116279,
+    "support": 49.0
+  },
+  "UI/UX": {
+    "precision": 0.47619047619047616,
+    "recall": 0.6896551724137931,
+    "f1-score": 0.5633802816901409,
+    "support": 29.0
+  },
+  "Maintainability": {
+    "precision": 0.6491228070175439,
+    "recall": 0.5,
+    "f1-score": 0.5648854961832062,
+    "support": 148.0
+  },
+  "Debugging": {
+    "precision": 0.7011494252873564,
+    "recall": 0.7261904761904762,
+    "f1-score": 0.7134502923976608,
+    "support": 84.0
+  },
+  "micro avg": {
+    "precision": 0.7325676784249385,
+    "recall": 0.8632189463508941,
+    "f1-score": 0.7925449301087197,
+    "support": 2069.0
+  },
+  "macro avg": {
+    "precision": 0.674669661296396,
+    "recall": 0.8232688858519974,
+    "f1-score": 0.7269911534718647,
+    "support": 2069.0
+  },
+  "weighted avg": {
+    "precision": 0.7774709386801872,
+    "recall": 0.8632189463508941,
+    "f1-score": 0.8065088632022094,
+    "support": 2069.0
+  },
+  "samples avg": {
+    "precision": 0.7067166601805156,
+    "recall": 0.8225962708643433,
+    "f1-score": 0.7475357272683284,
+    "support": 2069.0
+  }
+}

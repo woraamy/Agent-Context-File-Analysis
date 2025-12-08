@@ -1,0 +1,14 @@
+requests~=2.31.0
+pandas~=2.0.0
+numpy~=1.23.2
+markdown-it-py~=3.0.0
+helper
+backoff
+openai
+tiktoken
+scikit-learn
+langdetect
+seaborn
+matplotlib
+plotly
+textstat
