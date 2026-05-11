@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import os
 import re
 
-# Input CSV files location; raw datasets
-RAW_DATASETS_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), '..', 'raw_datasets')
+from manifest_analysis.utils.paths import RAW_DATASETS_DIR
 
 
 def parse_file_path(file_path):

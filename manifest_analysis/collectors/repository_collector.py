@@ -1,9 +1,14 @@
-import os
+from __future__ import annotations
+
 import time
+
 import pandas as pd
 
-from .github_client import GitHubClient
-from .utils import parse_file_path, RAW_DATASETS_DIR
+from manifest_analysis.collectors.commit_collector import CommitCollector
+from manifest_analysis.datasets.registry import get_manifest_dataset
+from manifest_analysis.utils.github_client import GitHubClient
+from manifest_analysis.utils.paths import ensure_dir
+from manifest_analysis.utils.repository import RAW_DATASETS_DIR, count_sections_changed, parse_file_path
 
 
 class RepoCollector:
@@ -65,15 +70,16 @@ class RepoCollector:
         return details
 
     def process_agentic_manifest_from_csv(self, output_name, csv_filename, commit_collector=None):
+        dataset = get_manifest_dataset(output_name)
         print("\n" + "=" * 50)
         print(f"Processing job: {output_name} from CSV: {csv_filename}")
         print("=" * 50)
 
-        repo_output_csv = f"../datasets/{output_name}_dataset.csv"
-        commit_output_csv = f"../datasets/{output_name}_commit_changes.csv"
+        repo_output_csv = dataset.original_path
+        commit_output_csv = dataset.commit_changes_path
 
-        csv_path = os.path.join(RAW_DATASETS_DIR, csv_filename)
-        if not os.path.exists(csv_path):
+        csv_path = RAW_DATASETS_DIR / csv_filename
+        if not csv_path.exists():
             print(f"✗ Error: CSV file not found: {csv_path}")
             return
 
@@ -140,7 +146,6 @@ class RepoCollector:
 
         if commit_collector is None:
             # import here to avoid circular import at module load
-            from ..commits.commit_collector import CommitCollector
             commit_collector = CommitCollector(self.client)
 
         print(f"\nFetching commit history for {len(df_repos_enriched)} repositories...")
@@ -171,8 +176,7 @@ class RepoCollector:
         else:
             print("\n✓ Processing and saving repository dataset...")
             df_repos_final = pd.DataFrame(final_repo_details_list)
-            df_repos_final = df_repos_final.rename(columns={"lines_of_code": f"lines_of_{output_name}"})
-            os.makedirs("datasets", exist_ok=True)
+            ensure_dir(repo_output_csv.parent)
             df_repos_final.to_csv(repo_output_csv, index=False)
             print(f"Successfully saved repository data to '{repo_output_csv}' ({len(df_repos_final)} repositories)")
 
@@ -181,8 +185,6 @@ class RepoCollector:
         else:
             print("\n✓ Processing and saving commit changes dataset...")
             df_commits = pd.DataFrame(all_commit_changes)
-            # lazy import to reuse util
-            from .utils import count_sections_changed
             df_commits['sections_changed_count'] = df_commits['patch_content'].apply(count_sections_changed)
             df_commits.to_csv(commit_output_csv, index=False)
             print(f"Successfully saved commit changes data to '{commit_output_csv}' ({len(df_commits)} commits)")

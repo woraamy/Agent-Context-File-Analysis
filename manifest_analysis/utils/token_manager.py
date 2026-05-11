@@ -6,7 +6,7 @@ multiple GitHub Personal Access Tokens when one fails due to rate limiting or
 authentication issues.
 
 Usage:
-    from token_manager import token_manager
+    from manifest_analysis.utils.token_manager import token_manager
     
     # Get headers for API requests
     headers = token_manager.get_headers()

@@ -1,25 +1,26 @@
+from __future__ import annotations
+
 import os
 import time
+
 import requests
 
 
 class GitHubClient:
     def __init__(self, token_env_var="GITHUB_TOKEN"):
         github_token = os.getenv(token_env_var)
-        if not github_token:
-            github_token = input("Please enter your GitHub Personal Access Token (press Enter for unauthenticated access): ")
-
-        self.headers = {
-            "Accept": "application/vnd.github.v3+json"
-        }
+        self.headers = {"Accept": "application/vnd.github.v3+json"}
         if github_token:
             self.headers["Authorization"] = f"token {github_token}"
-            print("GitHub token found. Using authenticated requests for higher rate limits.")
-        else:
-            print("Warning: No GitHub token provided. Using unauthenticated requests, which have lower rate limits.")
+        self.session = requests.Session()
 
     def get(self, url, **kwargs):
-        resp = requests.get(url, headers=self.headers, **kwargs)
+        resp = self.session.get(url, headers=self.headers, **kwargs)
+        self._handle_rate_limit(resp)
+        return resp
+
+    def head(self, url, **kwargs):
+        resp = self.session.head(url, headers=self.headers, **kwargs)
         self._handle_rate_limit(resp)
         return resp
 

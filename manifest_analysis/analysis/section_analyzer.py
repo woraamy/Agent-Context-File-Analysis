@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import numpy as np
 from markdown_it import MarkdownIt
 
@@ -5,6 +7,18 @@ from markdown_it import MarkdownIt
 class SectionAnalyzer:
     def __init__(self):
         self.md = MarkdownIt()
+
+    @staticmethod
+    def expected_columns() -> list[str]:
+        columns = ["repository_owner", "repository_name", "file_url"]
+        for level in range(1, 7):
+            columns.append(f"total_h{level}")
+        for parent_level in range(1, 6):
+            for child_level in range(parent_level + 1, 7):
+                columns.append(f"median_h{child_level}_under_h{parent_level}")
+        for level in range(1, 7):
+            columns.extend([f"avg_loc_h{level}", f"median_loc_h{level}"])
+        return columns
 
     def analyze(self, markdown_content: str) -> dict:
         """Analyze markdown content and return structural metrics.
