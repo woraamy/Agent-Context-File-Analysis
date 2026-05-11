@@ -1,0 +1,4 @@
+dataset,dataset_file,commit_file,num_rows,unique_repos_in_dataset,num_commit_rows,unique_repos_in_commits,unique_commit_shas
+agents,/Users/amyworawalan/Desktop/agentic_manifests_analysis/datasets/agents_dataset.csv,/Users/amyworawalan/Desktop/agentic_manifests_analysis/datasets/agents_commit_changes.csv,694,694,2924,718,2878
+claude,/Users/amyworawalan/Desktop/agentic_manifests_analysis/datasets/claude_dataset.csv,/Users/amyworawalan/Desktop/agentic_manifests_analysis/datasets/claude_commit_changes.csv,922,922,5861,959,5842
+copilot-instructions,/Users/amyworawalan/Desktop/agentic_manifests_analysis/datasets/copilot-instructions_dataset.csv,/Users/amyworawalan/Desktop/agentic_manifests_analysis/datasets/copilot-instructions_commit_changes.csv,687,687,2347,724,2327

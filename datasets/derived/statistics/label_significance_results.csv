@@ -1,0 +1,49 @@
+Comparison,Category,P-value,Cliff's d,Effect Size
+agents vs copilot-instructions,Architecture,0.5763637957060863,-0.0375886524822695,negligible
+agents vs copilot-instructions,Build & Run,0.6688871720999741,0.029609929078014185,negligible
+agents vs copilot-instructions,Claude/AI Integration,0.15612427664893397,-0.08351063829787234,negligible
+agents vs copilot-instructions,Configuration & Environment,0.4124327863225934,0.053368794326241135,negligible
+agents vs copilot-instructions,Debugging,0.0390852927036528,-0.12145390070921985,negligible
+agents vs copilot-instructions,Deployment and Operations,0.05653376896923746,-0.09964539007092199,negligible
+agents vs copilot-instructions,Development Process,0.0670167407265756,0.12109929078014184,negligible
+agents vs copilot-instructions,Documentation,0.300050075409127,0.06223404255319149,negligible
+agents vs copilot-instructions,Implementation Details,0.7909551324273297,-0.016843971631205674,negligible
+agents vs copilot-instructions,Maintanability,0.2108909479006763,0.08386524822695035,negligible
+agents vs copilot-instructions,Performance,0.09860658013047112,-0.07925531914893617,negligible
+agents vs copilot-instructions,Project Management,0.6067543999857666,-0.01578014184397163,negligible
+agents vs copilot-instructions,Security,0.37680993347762737,0.04060283687943263,negligible
+agents vs copilot-instructions,System Overview,0.0041379364088899705,-0.1971631205673759,small
+agents vs copilot-instructions,Test,0.014961097842733688,0.15390070921985816,small
+agents vs copilot-instructions,UI/UX,0.09781857815389759,-0.06950354609929078,negligible
+agents vs claude,Architecture,0.0014473345446761013,-0.20086548864046158,small
+agents vs claude,Build & Run,1.1117048662390464e-07,-0.3346556076451497,medium
+agents vs claude,Claude/AI Integration,0.346560237597897,-0.05427335016227912,negligible
+agents vs claude,Configuration & Environment,0.05890313815159648,-0.1298232960692391,negligible
+agents vs claude,Debugging,0.06120695449194143,-0.10944825099170573,negligible
+agents vs claude,Deployment and Operations,0.09354662205034507,-0.08636855391272989,negligible
+agents vs claude,Development Process,0.4226649578403342,0.05174900829426614,negligible
+agents vs claude,Documentation,0.8828873884257077,-0.009376126938333935,negligible
+agents vs claude,Implementation Details,0.648223335865681,-0.0288496213487198,negligible
+agents vs claude,Maintanability,0.04016778174464306,-0.14226469527587451,negligible
+agents vs claude,Performance,0.21963716836471003,-0.0567976920302921,negligible
+agents vs claude,Project Management,0.5873761005750004,-0.01676884240894338,negligible
+agents vs claude,Security,0.472092037630814,-0.03750450775333574,negligible
+agents vs claude,System Overview,0.0006841644609455776,-0.23332131265777137,small
+agents vs claude,Test,0.13847958735712645,-0.07717273710782546,negligible
+agents vs claude,UI/UX,0.8942944441407371,0.004507753335737469,negligible
+copilot-instructions vs claude,Architecture,0.005423174174011089,-0.16327683615819208,small
+copilot-instructions vs claude,Build & Run,2.3411396848016712e-09,-0.36426553672316386,medium
+copilot-instructions vs claude,Claude/AI Integration,0.6090052912062156,0.02923728813559322,negligible
+copilot-instructions vs claude,Configuration & Environment,0.003999996122965942,-0.18319209039548023,small
+copilot-instructions vs claude,Debugging,0.8388592242477055,0.012005649717514125,negligible
+copilot-instructions vs claude,Deployment and Operations,0.8029519669725508,0.01327683615819209,negligible
+copilot-instructions vs claude,Development Process,0.2704155367005744,-0.0693502824858757,negligible
+copilot-instructions vs claude,Documentation,0.20962974290390834,-0.07161016949152542,negligible
+copilot-instructions vs claude,Implementation Details,0.8388592242477055,-0.012005649717514125,negligible
+copilot-instructions vs claude,Maintanability,0.00047409768371456097,-0.22612994350282486,small
+copilot-instructions vs claude,Performance,0.6415555703102378,0.022457627118644068,negligible
+copilot-instructions vs claude,Project Management,0.9760407814138404,-0.0009887005649717514,negligible
+copilot-instructions vs claude,Security,0.08988814662198766,-0.07810734463276836,negligible
+copilot-instructions vs claude,System Overview,0.5599927007797139,-0.03615819209039548,negligible
+copilot-instructions vs claude,Test,4.224509708977488e-05,-0.23107344632768362,small
+copilot-instructions vs claude,UI/UX,0.054076803166132933,0.07401129943502825,negligible

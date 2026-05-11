@@ -1,0 +1,7 @@
+group_a,group_b,n_a,n_b,cliff_delta,cliff_effect_size,mannwhitney_u,p_value,metric
+copilot,claude,20946,40125,-0.1488095809637183,small,357695005.0,7.768792865292323e-206,avg_complexity
+copilot,codex,20946,17812,-0.25669932451071503,small,138659081.0,0.0,avg_complexity
+claude,codex,40125,17812,-0.143926755948071,negligible,305920556.0,1.9449220880156883e-171,avg_complexity
+copilot,claude,20946,40125,-0.07558886833462579,negligible,388464481.0,3.0433812670706955e-53,avg_loc
+copilot,codex,20946,17812,0.2680024263947873,small,236539609.0,0.0,avg_loc
+claude,codex,40125,17812,0.37105466929431874,medium,489950842.0,0.0,avg_loc

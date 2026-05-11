@@ -1,0 +1,1183 @@
+dataset,repository_owner,repository_name,repository_url,file_path,textstat_score,py_readability_score,manual_flesch_score,inspection_text
+claude,Comfy-Org,ComfyUI_frontend,https://github.com/Comfy-Org/ComfyUI_frontend,CLAUDE.md,26.838423046252018,,53.98402228612511,"# ComfyUI Frontend Project Guidelines
+
+## Repository Setup
+
+For first-time setup, use the Claude command:
+ 
+This bootstraps the monorepo with dependencies, builds, tests, and dev server verification.
+
+**Prerequisites:** Node.js >= 24, Git repository, available ports (5173, 6006)
+
+## Quick Commands
+
+- `pnpm`: See all available commands
+- `pnpm dev`: Start development server (port 5173, via nx)
+- `pnpm typecheck`: Type checking
+- `pnpm build`: Build for production (via nx)
+- `pnpm lint`: Linting (via nx)
+- `pnpm format`: Prettier formatting
+- `pnpm test:unit`: Run all unit tests
+- `pnpm test:browser`: Run E2E tests via Playwright
+- `pnpm test:unit -- tests-ui/tests/example.test.ts`: Run single test file
+- `pnpm storybook`: Start Storybook development server (port 6006)
+- `pnpm knip`: Detect unused code and dependencies
+
+## Monorepo Architecture
+
+The project now uses **Nx** for build orchestration and task management:
+
+- **Task Orchestration**: Commands like `dev`, `build`, `lint`, and `test:browser` run via Nx
+- **Caching**: Nx provides intelligent caching for faster rebuilds
+- **Configuration**: Managed through `nx.json` with plugins for ESLint, Storybook, Vite, and Playwright
+- **Dependencies**: Nx handles dependency graph analysis and parallel execution
+
+Key Nx features:
+- Build target caching and incremental builds
+- Parallel task execution across the monorepo
+- Plugin-based architecture for different tools
+
+## Development Workflow
+
+1. **First-time setup**: Run `/setup_repo` Claude command
+2. Make code changes
+3. Run tests (see subdirectory CLAUDE.md files)
+4. Run typecheck, lint, format
+5. Check README updates
+6. Consider docs.comfy.org updates
+
+## Git Conventions
+
+- Use [prefix] format: [feat], [bugfix], [docs]
+- Add ""Fixes #n"" to PR descriptions
+- Never mention Claude/AI in commits
+
+## External Resources
+
+- PrimeVue docs: <https://primevue.org>
+- ComfyUI docs: <https://docs.comfy.org>
+- Electron: <https://www.electronjs.org/docs/latest/>
+- Wiki: <https://deepwiki.com/Comfy-Org/ComfyUI_frontend/1-overview>
+
+## Project Philosophy
+
+- Follow good software engineering principles
+  - YAGNI
+  - AHA
+  - DRY
+  - SOLID
+- Clean, stable public APIs
+- Domain-driven design
+- Thousands of users and extensions
+- Prioritize clean interfaces that restrict extension access
+
+## Repository Navigation
+
+- Check README files in key folders (tests-ui, browser_tests, composables, etc.)
+- Prefer running single tests for performance
+- Use --help for unfamiliar CLI tools
+
+## GitHub Integration
+
+When referencing Comfy-Org repos:
+
+1. Check for local copy
+2. Use GitHub API for branches/PRs/metadata
+3. Curl GitHub website if needed
+
+## Settings and Feature Flags Quick Reference
+
+### Settings Usage
+ 
+
+### Dynamic Defaults
+ 
+
+### Version-Based Defaults
+ 
+
+### Feature Flags
+ 
+
+**Documentation:**
+- Settings system: `docs/SETTINGS.md`
+- Feature flags system: `docs/FEATURE_FLAGS.md`
+
+## Common Pitfalls
+
+- NEVER use `any` type - use proper TypeScript types
+- NEVER use `as any` type assertions - fix the underlying type issue
+- NEVER use `--no-verify` flag when committing
+- NEVER delete or disable tests to make them pass
+- NEVER circumvent quality checks
+- NEVER use `dark:` or `dark-theme:` tailwind variants. Instead use a semantic value from the `style.css` theme, e.g. `bg-node-component-surface`
+- NEVER use `:class=""[]""` to merge class names - always use `import { cn } from '@/utils/tailwindUtil'`, for example: `<div :class=""cn('text-node-component-header-icon', hasError && 'text-danger')"" />`"
+claude,mattgodbolt,specbolt,https://github.com/mattgodbolt/specbolt,CLAUDE.md,39.0481225296443,,64.21117715617717,"# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Build Commands
+- Configure: `CC=clang-20 CXX=clang++-20 cmake -B build/Debug -G Ninja -DCMAKE_BUILD_TYPE=Debug`
+- Build: `cmake --build build/Debug`
+- Run: `./build/Debug/sdl/specbolt-sdl`
+- Tests: `ctest --test-dir build/Debug`
+- Single test: `./build/Debug/<component>/test/<component>_test [<test-name>]`
+
+## Lint/Format
+- Pre-commit hooks check formatting: `pre-commit run --all-files`
+- Formatting: Code follows `.clang-format` with LLVM-based style
+
+## Code Style
+- See detailed style guide in [STYLE_GUIDE.md](STYLE_GUIDE.md) for comprehensive guidelines
+- C++26 with CMake and C++ modules when SPECBOLT_MODULES is on
+- REQUIRES clang-20 or newer for C++ modules and modern features
+- Column limit: 120 chars, tab width: 2 spaces
+- Includes order: 1) System (<...>), 2) Local (""...""), 3) Others
+- Types: Use strong typing with enum classes and standard types
+- Imports: Use `import module:submodule` with modules, fallback to includes
+- Error handling: Return error codes or throw exceptions where appropriate
+- Naming: PascalCase for types/classes, snake_case for functions/variables
+- British English spelling preferred (e.g., ""colour"" not ""color"")
+- Make variables const by default, use if-init where appropriate
+- Const value parameters in function definitions, not declarations
+- Modules structure: `.cppm` for module interface files, `.cpp` for implementation
+- Tests use Catch2 framework with standard TEST_CASE and SECTION macros"
+claude,AfterShip,clickhouse-sql-parser,https://github.com/AfterShip/clickhouse-sql-parser,CLAUDE.md,31.74314338235297,,48.77556608082145,"# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+This is a ClickHouse SQL parser written in Go that parses ClickHouse SQL into AST (Abstract Syntax Tree) and provides SQL formatting capabilities. The project is inspired by memefish and is designed to work both as a Go library and a CLI tool.
+
+## Build and Development Commands
+
+### Build the CLI tool
+ 
+
+### Run tests
+ 
+
+### Run compatible tests (for ClickHouse compatibility)
+ 
+
+### Update test golden files
+ 
+
+### Run linting
+ 
+
+### Run benchmarks
+ 
+
+## Architecture Overview
+
+### Core Components
+
+**Lexer (`parser/lexer.go`)**
+- Tokenizes ClickHouse SQL input into tokens
+- Handles keywords, identifiers, operators, literals, and comments
+- Supports various token types including strings, numbers, and punctuation
+
+**Parser (`parser/parser_*.go`)**
+- Modular parser split across multiple files by functionality:
+  - `parser_common.go` - Core parser logic and utilities
+  - `parser_query.go` - SELECT statements and query parsing
+  - `parser_table.go` - CREATE TABLE and table-related DDL
+  - `parser_alter.go` - ALTER statements
+  - `parser_drop.go` - DROP statements
+  - `parser_view.go` - View-related statements
+  - `parser_column.go` - Column definitions and operations
+
+**AST (`parser/ast.go`)**
+- Defines all AST node types implementing the `Expr` interface
+- Each node provides `Pos()`, `End()`, `String()`, and `Accept()` methods
+- Supports visitor pattern for AST traversal
+
+**AST Traversal**
+- **Walk Pattern** (`parser/walk.go`) - Recommended approach for AST traversal
+  - `Walk(node, fn)` - Depth-first traversal
+  - `Find(root, predicate)` - Find first matching node
+  - `FindAll(root, predicate)` - Find all matching nodes
+  - `Transform(root, transformer)` - Apply transformations
+- **Visitor Pattern** (`parser/ast_visitor.go`) - More complex but powerful traversal
+
+**Main Entry Point (`main.go`)**
+- CLI tool supporting parsing to AST JSON or formatting SQL
+- Accepts input from command line arguments or files
+
+### Key Interfaces
+
+- `Expr` - Base interface for all AST nodes
+- `DDL` - Interface for Data Definition Language statements
+- `ASTVisitor` - Visitor pattern interface for AST traversal
+- `WalkFunc` - Function type for Walk pattern traversal
+
+## Testing Strategy
+
+The project uses a comprehensive testing approach:
+
+**Golden File Testing**
+- Test cases in `parser/testdata/` organized by category:
+  - `basic/` - Simple test cases
+  - `ddl/` - Data Definition Language tests
+  - `dml/` - Data Manipulation Language tests  
+  - `query/` - SELECT and query tests
+- Expected outputs stored in `output/` subdirectories as `.golden.json` files
+- Formatted SQL outputs in `format/` subdirectories
+
+**Compatible Testing**
+- Real ClickHouse SQL files in `testdata/query/compatible/1_stateful/`
+- Run with `-compatible` flag to test against actual ClickHouse queries
+
+**Benchmark Testing**
+- Performance tests in `parser/benchmark_test.go`
+- Tests parsing speed and memory allocation for various query types
+
+## Development Guidelines
+
+**Adding New SQL Features**
+1. Add test cases to appropriate `testdata/` subdirectory
+2. Implement lexer tokens if needed in `lexer.go`
+3. Add AST node types to `ast.go` with all required methods
+4. Implement parsing logic in appropriate `parser_*.go` file
+5. Add visitor methods to `ast_visitor.go` if using visitor pattern
+6. Update Walk functions in `walk.go` for new node types
+7. Run `make update_test` to generate golden files
+
+**Parser Module Organization**
+- Keep parser functions organized by SQL statement type
+- Use consistent naming: `parseXXX()` for parsing functions
+- Implement proper error handling with descriptive messages
+- Follow existing patterns for operator precedence and expression parsing
+
+**AST Node Implementation**
+- All nodes must implement `Pos()`, `End()`, `String()`, and `Accept()` methods
+- String() method should regenerate valid ClickHouse SQL
+- Accept() method must call visitor.Enter()/Leave() and visit all child nodes
+
+** Walking the AST**
+
+- For a new expression type, it should be also added to the `Walk` function in `walk.go`."
+claude,jwilger,event_modeler,https://github.com/jwilger/event_modeler,CLAUDE.md,35.50900744937576,,51.05926634466104,"# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Critical Rules for Claude Code
+
+1. **ALWAYS use MCP workflow tools** (`workflow_next`, `workflow_status`, etc.) for project workflow
+2. **ALWAYS create a feature branch before making commits**
+3. **ALWAYS use `nutype` for domain-specific types** (never raw primitives)
+4. **NEVER use `.unwrap()` or `.expect()` on validation**
+5. **ALWAYS run `cargo fmt` and `cargo clippy` before suggesting commits**
+6. **NEVER use `#[allow(...)]` without explicit user permission**
+7. **Check GitHub issues and epics for current work** (see Project Workflow section)
+
+## Collaboration Style
+
+Act as a peer programmer, not an assistant:
+
+- **Be direct**: Skip excessive agreement and enthusiasm. No need for ""Excellent!"", ""You're absolutely right!"", etc.
+- **Think critically**: Question approaches that seem suboptimal. Offer alternatives when you see better solutions.
+- **Seek clarity**: If reasoning isn't clear, ask why before proceeding.
+- **Give honest feedback**: Only agree when you genuinely think something is correct or well-designed.
+- **Professional tone**: Respond like a colleague, not a cheerleader. Focus on the code and problem-solving.
+
+## Conversation Compaction
+
+When the conversation is compacted (manual or auto-compact), ensure [CLAUDE.md](CLAUDE.md) is reviewed and check GitHub issues to maintain awareness of:
+
+- Critical development rules and architecture principles
+- Current work status via GitHub issues and epics
+- Active PRs and their status
+
+## Repository Overview
+
+Event Modeler is a CLI application that converts YAML-based event model descriptions (`.eventmodel` files) into visual diagrams (SVG/PDF format).
+
+**Current Status**: Major rewrite in progress - transitioning from simple text format to rich YAML-based event modeling language. Work is tracked via GitHub issues with epics for major phases.
+
+## Development Setup
+
+**Environment**: Nix flake with direnv for automatic environment loading
+
+ 
+
+## Technical Architecture
+
+### Core Technologies
+
+- **Language**: Rust (latest stable)
+- **Type Safety**: nutype for domain-specific types
+- **Error Handling**: thiserror for structured errors
+- **Parsing**: serde_yaml for YAML format
+- **Collections**: IndexMap for preserving order
+
+### Project Structure
+
+ 
+
+## Core Development Principles
+
+1. **Type-Driven Development**: Make illegal states unrepresentable at compile time
+2. **Parse, Don't Validate**: All validation happens at system boundaries
+3. **No Performance Optimizations**: Correctness over speed (see ADR)
+
+### Type-Safety Quick Reference
+
+ 
+
+## YAML Implementation Overview
+
+Event Modeler uses a three-stage pipeline for YAML processing:
+
+ 
+
+### Key YAML Principles
+
+1. **Always validate at parse boundaries** - never trust string input
+2. **Use nutype wrappers** for all domain strings (`EventName`, `CommandName`, etc.)
+3. **Preserve order** with `IndexMap` where sequence matters
+4. **Provide helpful errors** with field names and context
+
+### YAML Development Tasks
+
+When modifying YAML support:
+
+1. Update parsing types in `yaml_parser.rs`
+2. Update domain types in `yaml_types.rs`
+3. Update converter in `yaml_converter.rs`
+4. Add tests for both success and error cases
+5. Update [docs/yaml-syntax-guide.md](docs/yaml-syntax-guide.md)
+
+## Git Commit Guidelines
+
+- Make high-quality commits that explain the _why_ not just the _how_
+- NO commit prefixes (no ""feat:"", ""fix:"", ""chore:"")
+- Keep commits focused and atomic
+- See [README.md](README.md) for commit message format
+
+## Code Quality Standards
+
+- Document ALL public items with rustdoc comments
+- Use descriptive names (no single-letter variables)
+- Run `cargo fmt` and `cargo clippy` before every commit
+- Preserve existing type signatures when implementing `todo!()`
+
+## Project Workflow
+
+### GitHub Issues & Epics
+
+Development work is tracked using GitHub issues with the following structure:
+
+1. **Epics**: Major phases labeled with ""epic""
+
+   - Track overall progress for large features
+   - Contain multiple sub-issues
+   - Examples: ""Phase 6: Diagram Module Rewrite"", ""MCP Workflow Server Development""
+
+2. **Sub-Issues**: Individual work items
+
+   - Linked to epics using GitHub's sub-issue feature
+   - Include acceptance criteria, dependencies, and implementation notes
+   - Use ""Depends on #X"" pattern for dependencies
+
+3. **Finding Work**:
+   - ALWAYS use MCP `workflow_next` tool to determine what to work on
+   - Use MCP `workflow_status` tool to check current state
+   - Use MCP `workflow_create_pr` tool to create pull requests
+   - Use MCP `workflow_monitor_reviews` to check PR review status
+   - The workflow tools enforce proper PR review discipline
+
+### PR-Driven Development
+
+1. Create feature branches from issues
+2. Make commits frequently with clear messages
+3. Create PRs early (not as draft)
+4. Monitor and address all reviews
+5. Merge triggers next work item
+
+## References
+
+- **Architecture & Contributing**: [README.md](README.md)
+- **Development Process**: [DEVELOPMENT_PROCESS.md](DEVELOPMENT_PROCESS.md)
+- **Roadmap & Vision**: [ROADMAP.md](ROADMAP.md)
+- **YAML Syntax**: [docs/yaml-syntax-guide.md](docs/yaml-syntax-guide.md)
+
+## REMEMBER
+
+- ALWAYS prefer MCP tools available to you instead of Bash commands.
+- If an MCP tool call fails, make sure you are calling it properly rather than immediately falling back to a Bash command.
+- ALWAYS use our workflow MCP server to determine your next task and follow the suggested next actions its responses provide."
+agents,SLNE-Development,community-server-docs,https://github.com/SLNE-Development/community-server-docs,AGENTS.md,38.296662895927625,,52.62358781994706,"# Richtlinien für Codex Agents
+
+Diese Datei erläutert, wie Änderungen in diesem Repository vorgenommen werden sollen. Das Repository verwendet [Writerside](https://www.jetbrains.com/help/writerside/) von JetBrains für die Dokumentation. Writerside basiert auf Markdown, bietet jedoch zusätzliche Funktionen wie Snippets, Variablen und spezielle Tags.
+
+## Allgemeine Regeln
+- Schreibe alle neuen Inhalte auf Deutsch.
+- Achte auf eine freundliche, leicht verständliche Ausdrucksweise.
+- Bestehende Dateien dürfen nicht ohne Grund gelöscht werden.
+- Nutze Pull Requests mit aussagekräftigen Beschreibungen.
+
+## Writerside-spezifische Hinweise
+ - Writerside unterstützt Standard-Markdown sowie erweiterte Tags und eine XML-basierte Semantik.
+    - Wiederverwendbare Inhalte definierst du mit `<snippet id=""..."">...</snippet>`.
+    - Über `<include from=""DATEI"" element-id=""ID""/>` bindest du Snippets in andere Seiten ein.
+    - Variablen aus `Writerside/v.list` kannst du über `%varname%` nutzen.
+    - Hinweise und Warnungen werden mit `{style=""note""}` bzw. `{style=""warning""}` erzeugt.
+    - Registerkarten lassen sich mit `<tabs>` und `<tab title=""Titel"" id=""name"">` aufbauen.
+    - Definitionen verwendest du mit `<deflist>` und `<def title=""..."">`.
+    - Neue Dokumentationsdateien legst du unter `Writerside/topics/` an. Die Struktur sollte zu den vorhandenen Unterordnern passen.
+    - Bilder kommen in `Writerside/images/`, Videos in `Writerside/videos/`.
+ - Achte darauf, IDs für Überschriften zu vergeben (`## Titel {id=""...""}`), damit Links stabil bleiben.
+ - Bevor du Inhalte veröffentlichst, führe das Writerside-Build-Skript aus (falls vorhanden), um sicherzustellen, dass die Dokumentation fehlerfrei gerendert wird.
+
+### Kurzübersicht zum Writerside-Markup
+Writerside kombiniert CommonMark mit zahlreichen XML‑Tags. Ein paar der wichtigsten Funktionen aus der Dokumentation sind:
+
+- **Absätze und Text**: Einfache Absätze brauchen keine besonderen Tags. Für Textblöcke kannst du `<p>` verwenden und über `{id=""...""}` eigene IDs setzen.
+- **Strukturelle Blöcke**: Verwende `<chapter>` für längere Themenblöcke oder `<procedure>` mit `<step>` für Schritt‑an‑Schritt-Anleitungen. Inhaltslisten baust du mit `<list type=""ordered"">` oder `<list type=""unordered"">`, Tabellen mit `<table>`, `<tr>`, `<td>`.
+- **Ein- und ausklappbare Abschnitte**: `<collapsible>` bzw. `<expander>` ermöglichen Akkordeon-ähnliche Inhalte.
+- **Links und Querverweise**: `[Linktext](url)` funktioniert wie gewohnt. Für interne Verweise gibt es `<xref href=""topic.id""/>`.
+- **Medieneinbindung**: Bilder bindest du über `![Alt-Text](path)` oder `<img src=""path"" alt=""Text"">` ein, Videos mit `<video src=""..."" poster=""..."">`.
+- **Weitere Blöcke**: `tabs` mit `tab` für Registerkarten, `code-block` für längere Beispiele, `diagram` für Mermaid-, PlantUML- oder D2-Grafiken, `math` für Formeln.
+- **Inline-Tags**: `link`, `control`, `path`, `var`, `shortcut` oder `tooltip` ergänzen Textstellen semantisch. Für kurze Code-Snippets nutzt du `` `code` `` oder `<code>`.
+- **Hinweiskästen**: `{style=""note""}`, `{style=""tip""}`, `{style=""warning""}`, `<tldr>` oder `<summary>` heben wichtige Informationen hervor.
+- **Weitere Funktionen**: Dateien zum Download deklarierst du mit `<download>`, Startseiten über `<section-starting-page>`, Beschriftungen mit `labels=""tag1,tag2""`.
+Eine kompakte Übersicht aller Elemente steht in der [Semantic Markup Reference](https://www.jetbrains.com/help/writerside/semantic-markup-reference.html). Weitere Infos zu Paragraphs, Structural Elements und anderen Themen findest du in den Writerside-Seiten.
+## Writerside lokal oder mit Docker bauen
+
+Um deine Änderungen zu testen, kannst du den in Writerside integrierten Builder oder das von JetBrains bereitgestellte Docker-Image verwenden.
+
+1. **Docker-Image herunterladen**
+
+    
+
+2. **Dokumentation bauen**
+
+   Starte den Build aus dem Projektstammverzeichnis heraus und mounte die Quelldateien in den Container:
+
+    
+
+   Das Ergebnis findest du anschließend im Ordner `output`.
+
+## Projektstruktur
+- `Writerside/writerside.cfg` steuert die wichtigsten Einstellungen des Projekts.
+- Kategorien und Labels befinden sich in `Writerside/c.list` und `Writerside/labels.list`.
+- In `templates/` findest du Vorlagen, die du bei Bedarf einbinden kannst.
+
+## Hinweise für Pull Requests
+- Stelle sicher, dass die Git-Historie sauber ist (`git status` sollte keine Änderungen zeigen).
+- Führe vor dem Commit alle im Projekt definierten Tests oder Builds aus.
+- Beschreibe im PR-Text kurz, welche Dateien du geändert hast und warum.
+- Füge der PR-Beschreibung eine Zusammenfassung auf Deutsch hinzu."
+claude,ivo-toby,mcp-openapi-server,https://github.com/ivo-toby/mcp-openapi-server,CLAUDE.md,28.95050912792084,,38.26445093617605,"# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+This is an MCP (Model Context Protocol) server that exposes OpenAPI endpoints as MCP tools. It allows LLMs to discover and interact with REST APIs defined by OpenAPI specifications through the MCP protocol.
+
+## Essential Development Commands
+
+### Building and Testing
+ 
+
+### Development Workflow
+ 
+
+### Common Pitfall
+**Never try to run test scripts from command line using `node -e`** - this will always fail. Write a TypeScript test file, build it, and execute it, or use the test runner with `npm test`.
+
+## Architecture & Key Concepts
+
+### Core Components
+
+The codebase has a layered architecture:
+
+ 
+
+### Tool ID System
+
+Tool IDs uniquely identify API endpoints with format: `METHOD::pathPart`
+
+**Critical implementation detail**: Uses **double underscores (`__`)** to separate path segments:
+- `/api/v1/users` → `GET::api__v1__users`
+- `/api/resource-name/items` → `GET::api__resource-name__items`
+- Single hyphens within segments are preserved as-is
+- Path parameters have braces removed: `/users/{id}` → `GET::users__---id`
+
+Implementation in `src/utils/tool-id.ts`:
+- `generateToolId()` - Creates tool IDs from method + path
+- `parseToolId()` - Parses tool IDs back to method + path
+- `sanitizeForToolId()` - Ensures safe characters only
+
+### Parameter Location Handling
+
+**Critical for Issue #50 fix**: The system tracks where parameters should be sent using `x-parameter-location` metadata:
+
+- `path` - URL path parameters (e.g., `/users/{id}`)
+- `query` - Query string parameters (e.g., `?page=1`)
+- `header` - HTTP header parameters (e.g., `Authorization: Bearer token`)
+- `cookie` - Cookie parameters
+
+This metadata is set during tool creation in `openapi-loader.ts:546` and consumed during request execution in `api-client.ts:142-170`.
+
+### Tools Loading Modes
+
+Three distinct modes controlled by `toolsMode`:
+
+1. **`""all""`** (default): Load all endpoint-based tools from OpenAPI spec, applying filters
+2. **`""dynamic""`**: Load only meta-tools (`LIST-API-ENDPOINTS`, `GET-API-ENDPOINT-SCHEMA`, `INVOKE-API-ENDPOINT`)
+3. **`""explicit""`**: Load only tools specified in `includeTools`, ignoring all other filters
+
+### Tool Name Abbreviation
+
+Tool names must be ≤64 characters with format `[a-z0-9-]+`. The abbreviation system (in `openapi-loader.ts` and `utils/abbreviations.ts`) applies:
+
+1. Word splitting (camelCase, underscores, numbers)
+2. Common word removal (""controller"", ""api"", ""service"", etc.)
+3. Standard abbreviations (""management"" → ""mgmt"", ""user"" → ""usr"")
+4. Vowel removal for long words
+5. Hash suffix if needed
+
+Disable with `disableAbbreviation: true` (may cause errors if names exceed 64 chars).
+
+### Authentication System
+
+Two approaches:
+
+**Static headers** (backward compatible):
+ 
+
+**Dynamic AuthProvider** (for token refresh, expiration handling):
+ 
+
+Key flow: Before each request → `getAuthHeaders()` → On 401/403 → `handleAuthError()` → If returns true, retry once with fresh headers.
+
+### OpenAPI Processing
+
+**Reference resolution**: Handles `$ref` pointers to components (parameters, schemas), detects circular references.
+
+**Schema composition**: Supports `allOf` (merges schemas), `oneOf`/`anyOf` (preserves composition), `not`.
+
+**Input schema generation**: Merges path/query/header/cookie parameters + request body into unified schema. Handles naming conflicts by prefixing body properties with `body_`.
+
+**Parameter inheritance**: Path-level parameters are inherited by all operations, operation-level parameters can override.
+
+## Testing Strategy
+
+Tests use Vitest with comprehensive coverage across:
+
+- **Unit tests**: Individual functions and classes
+- **Integration tests**: Component interactions
+- **Edge case tests**: Boundary conditions and errors
+- **Regression tests**: Prevent known issues (e.g., Issue #33, Issue #50)
+
+Key test files match source files: `api-client.test.ts` tests `api-client.ts`, etc.
+
+Each major feature or bug fix should have dedicated test cases with descriptive names referencing the issue number (e.g., ""Issue #50: Header Parameter Support"").
+
+## Filter System
+
+Filters are applied in order with AND logic:
+
+1. **`includeTools`** (highest priority) - If specified, overrides all others
+2. **`includeOperations`** - HTTP methods (get, post, etc.)
+3. **`includeResources`** - Resource names extracted from paths
+4. **`includeTags`** - OpenAPI tags
+
+All filtering is **case-insensitive**.
+
+Exception: In **`explicit` mode**, only `includeTools` is used, all others are ignored.
+
+## Important File Locations
+
+- **Configuration**: `src/config.ts` - Loads from env vars and CLI args
+- **CLI entry**: `src/cli.ts` - Command-line interface
+- **Transport**: `src/transport/StreamableHttpServerTransport.ts` - HTTP transport with SSE
+- **Examples**: `examples/` directory - Real-world usage patterns
+- **Developer docs**: `docs/developer-guide.md` - Comprehensive architecture guide
+
+## Common Development Patterns
+
+### Adding New Parameter Location Support
+
+When adding support for new parameter locations (like the header fix for Issue #50):
+
+1. Update `openapi-loader.ts` to set `x-parameter-location` metadata
+2. Update `api-client.ts` to extract and handle the parameter type
+3. Add comprehensive tests covering GET/POST requests, mixed parameters, and auth header merging
+4. Ensure parameters are removed from the main params object after extraction
+
+### Adding New Tool Metadata
+
+When adding metadata to `ExtendedTool` interface:
+
+1. Define property in `openapi-loader.ts` interface
+2. Populate during tool creation in `parseOpenAPISpec()`
+3. Use in filtering logic in `tools-manager.ts`
+4. Add tests for filter behavior
+
+### Working with OpenAPI References
+
+When processing `$ref`:
+
+1. Always handle both reference objects and schema objects
+2. Pass `components` and `visited` set for cycle detection
+3. Return empty schema for unresolvable references
+4. Use `inlineSchema()` helper for recursive resolution
+
+## Project Structure Notes
+
+- `src/` - TypeScript source files
+- `test/` - Test files (mirror `src/` structure)
+- `dist/` - Built output (created by build process)
+- `bin/mcp-server.js` - CLI executable entry point
+- `build.js` - esbuild configuration for bundling
+- `examples/` - Complete runnable examples for different use cases"
+claude,mbukosky,SpotifyUnchained,https://github.com/mbukosky/SpotifyUnchained,CLAUDE.md,13.95051485655739,,35.13675966785294,"# SpotifyUnchained - Development Guide
+
+## Project Overview
+
+SpotifyUnchained is a web application that automatically archives Spotify's ""New Music Friday"" playlists before they refresh weekly. This ensures music lovers never lose track of previously featured songs. The application consists of an Angular frontend and a Node.js/Express backend with MongoDB for data persistence.
+
+**Key Features:**
+- Automatically archives Spotify's New Music Friday playlist
+- Web interface to browse historical playlist archives
+- Material Design UI with dark/light theme support
+- RESTful API for playlist data
+- Scheduled playlist synchronization
+
+## Architecture
+
+### Tech Stack
+- **Frontend**: Angular 14 with Angular Material
+- **Backend**: Node.js with Express.js
+- **Database**: MongoDB with Mongoose ODM
+- **Build Tools**: Angular CLI with custom Webpack configuration
+- **Testing**: Jasmine, Karma, Protractor (E2E)
+- **Linting**: ESLint + TSLint for TypeScript, JSHint for Node.js
+- **Deployment**: Heroku-ready with Procfile
+
+### Project Structure
+ 
+
+## Development Setup
+
+### Prerequisites
+- Node.js 18.x
+- npm 9.8.x
+- MongoDB (running on default port 27017)
+- Angular CLI: `npm install -g @angular/cli`
+
+### Environment Variables
+Create a `.env` file in the project root with your local environment variables:
+
+**Required for Spotify Integration:**
+- `SPOTIFY_CLIENT_ID` - Your Spotify app client ID
+- `SPOTIFY_CLIENT_SECRET` - Your Spotify app client secret
+- `DB_URI` - MongoDB connection string
+
+**Optional:**
+- `PORT` - Server port (default: 3000)
+- `NODE_ENV` - Environment (development/production/test/secure)
+- `SESSION_SECRET` - Express session secret
+- `MAILER_*` - Email configuration variables
+- `SKIP_SPOTIFY_SYNC` - Set to `true` to disable automatic Spotify sync (useful for local development)
+
+### Installation & Setup
+
+1. **Install dependencies:**
+    
+
+2. **Start MongoDB:**
+    
+
+3. **Create .env file:**
+   Create a `.env` file in the project root with your environment variables:
+    
+
+4. **Development Mode:**
+   
+   **Terminal 1 - Start Express API server:**
+    
+   
+   **Terminal 2 - Start Angular dev server:**
+    
+   
+   Access application at: http://localhost:4200
+
+5. **Production Mode:**
+    
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start Express server |
+| `npm run dev` | Start Express server (alias for npm start) |
+| `npm run build` | Build Angular app for production |
+| `npm test` | Run Angular unit tests |
+| `npm run test-headless` | Run tests in headless Chrome |
+| `npm run lint` | Lint both backend (JSHint) and frontend (ESLint) |
+| `npm run e2e` | Run end-to-end tests |
+| `ng serve` | Start Angular dev server with proxy |
+| `ng build --configuration production` | Production build |
+
+## API Endpoints
+
+### Playlist API
+- `GET /spotify` - List archived playlists
+  - Query params: `page`, `size`, `sort` (asc/desc)
+  - Returns paginated playlist data with track information
+
+## Database Schema
+
+### Playlist Model
+ 
+
+## Configuration Files
+
+### Angular Configuration
+- **angular.json** - Angular CLI configuration with custom webpack
+- **tsconfig.json** - TypeScript compiler options
+- **proxy.conf.json** - Development proxy config (routes /spotify to backend)
+- **custom-webpack.config.js** - Injects environment variables into build
+
+### Backend Configuration
+- **config/config.js** - Main configuration loader
+- **config/env/** - Environment-specific settings
+  - `all.js` - Base configuration
+  - `development.js` - Local development
+  - `production.js` - Production settings
+  - `secure.js` - HTTPS configuration
+
+### Linting & Testing
+- **.eslintrc.json** - ESLint configuration for Angular
+- **tslint.json** - TSLint rules (legacy, being phased out)
+- **karma.conf.js** - Karma test runner configuration
+- **e2e/protractor.conf.js** - End-to-end test configuration
+
+## Key Components
+
+### Frontend (Angular)
+- **PlaylistTableComponent** - Main data table with pagination/sorting
+- **PlaylistComponent** - Individual playlist display
+- **TrackComponent** - Individual track display
+- **ToolbarComponent** - Navigation and controls
+- **ThemeService** - Dark/light mode management
+- **PlaylistService** - HTTP client for API communication
+
+### Backend (Express)
+- **playlist.server.controller.js** - Playlist CRUD operations
+- **spotify.server.controller.js** - Spotify API integration
+- **playlist.server.model.js** - Mongoose schema definition
+
+## Build & Deployment
+
+### Development Build
+Angular development server automatically proxies API calls to Express server via `proxy.conf.json`.
+
+### Production Build
+1. `ng build --configuration production` creates optimized bundle in `dist/`
+2. Express server serves static files from `dist/SpotifyUnchained/`
+3. Environment variables injected via custom webpack configuration
+
+### Heroku Deployment
+- **Procfile** - Defines web process: `./node_modules/.bin/forever -m 5 server.js`
+- Configure environment variables in Heroku dashboard
+- MongoDB via add-on (e.g., MongoDB Atlas)
+
+## Spotify Integration
+
+### Authentication
+Uses Spotify Client Credentials flow for server-to-server access (no user login required).
+
+### Playlist Synchronization
+- **Manual**: Run `node spotify-loader.js` to sync playlists from `spotify-playlist.json`
+- **Automatic**: Scheduler can be implemented using `node-schedule` package
+- **Current Target**: New Music Friday playlist ID: `37i9dQZF1DX4JAvHpjipBk`
+
+## Testing
+
+### Unit Tests
+ 
+
+### E2E Tests
+ 
+
+### Linting
+ 
+
+## Common Development Tasks
+
+### Adding New Environment Variables
+1. Add to `.env` file for local development
+2. Add to `custom-webpack.config.js` for frontend access
+3. Add to appropriate `config/env/*.js` file for backend
+4. Update this documentation
+
+**Note**: The `.env` file is automatically loaded at application startup and should not be committed to version control.
+
+### Database Operations
+- Connect to local MongoDB: `mongodb://localhost/spotifyunchained-dev`
+- View data: Use MongoDB Compass or CLI
+- Reset database: Drop `spotifyunchained-dev` database
+
+### Debugging
+- Backend: Use Node.js debugger or console.log
+- Frontend: Use Angular DevTools browser extension
+- Network: Check proxy configuration in `proxy.conf.json`
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Port conflicts**: Ensure ports 3000 (API) and 4200 (Angular) are available
+2. **MongoDB connection**: Verify MongoDB is running and accessible
+3. **Proxy errors**: Check `proxy.conf.json` configuration
+4. **Build errors**: Clear `node_modules` and reinstall dependencies
+5. **Spotify API**: Verify client credentials are set correctly
+
+### Logs
+- Express server logs to console
+- Angular dev server shows compilation status
+- Network requests visible in browser DevTools
+
+---
+
+*This guide covers the essential information for developing and maintaining the SpotifyUnchained application. For additional details, refer to the source code and official documentation for the respective technologies.*"
+claude,modular,modular,https://github.com/modular/modular,CLAUDE.md,14.088061340071448,,44.47532745953396,"# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with
+code in this repository.
+
+## Repository Overview
+
+The Modular Platform is a unified platform for AI development and deployment
+that includes:
+
+- **MAX**: High-performance inference server with OpenAI-compatible endpoints
+for LLMs and AI models
+- **Mojo**: A new programming language that bridges Python and systems
+programming, optimized for AI workloads
+
+## Essential Build Commands
+
+### Global Build System (Bazel)
+
+All builds use the `./bazelw` wrapper from the repository root:
+
+ 
+
+### Pixi Environment Management
+
+Many directories include `pixi.toml` files for environment management. Use Pixi
+when present:
+
+ 
+
+### MAX Server Commands
+
+ 
+
+## High-Level Architecture
+
+### Repository Structure
+
+ 
+
+### Key Architectural Patterns
+
+1. **Language Separation**:
+   - Low-level performance kernels in Mojo (`max/kernels/`)
+   - High-level orchestration in Python (`max/serve/`, `max/pipelines/`)
+
+2. **Hardware Abstraction**:
+   - Platform-specific optimizations via dispatch tables
+   - Support for NVIDIA/AMD GPUs, Intel/Apple CPUs
+   - Device-agnostic APIs with hardware-specific implementations
+
+3. **Memory Management**:
+   - Device contexts for GPU memory management
+   - Host/Device buffer abstractions
+   - Careful lifetime management in Mojo code
+
+4. **Testing Philosophy**:
+   - Tests mirror source structure
+   - Use `lit` tool with FileCheck validation
+   - Hardware-specific test configurations
+   - Migrating to `testing` module assertions
+
+## Development Workflow
+
+### Branch Strategy
+
+- Work from `main` branch (synced with nightly builds)
+- `stable` branch for released versions
+- Create feature branches for significant changes
+
+### Testing Requirements
+
+ 
+
+### Code Style
+
+- Use `mojo format` for Mojo code
+- Follow existing patterns in the codebase
+- Add docstrings to public APIs
+- Sign commits with `git commit -s`
+
+### Performance Development
+
+ 
+
+## Critical Development Notes
+
+### Mojo Development
+
+- Use nightly Mojo builds for development
+- Install nightly VS Code extension
+- Avoid deprecated types like `Tensor` (use modern alternatives)
+- Follow value semantics and ownership conventions
+- Use `Reference` types with explicit lifetimes in APIs
+
+### MAX Kernel Development
+
+- Fine-grained control over memory layout and parallelism
+- Hardware-specific optimizations (tensor cores, SIMD)
+- Vendor library integration when beneficial
+- Performance improvements must include benchmarks
+
+### Common Pitfalls
+
+- Always check Mojo function return values for errors
+- Ensure coalesced memory access patterns on GPU
+- Minimize CPU-GPU synchronization points
+- Avoid global state in kernels
+- Never commit secrets or large binary files
+
+### Environment Variables
+
+Many benchmarks and tests use environment variables:
+
+- `env_get_int[param_name]=value`
+- `env_get_bool[flag_name]=true/false`
+- `env_get_dtype[type]=float16/float32`
+
+## Contributing Areas
+
+Currently accepting contributions for:
+
+- Mojo standard library (`/mojo/stdlib/`)
+- MAX AI kernels (`/max/kernels/`)
+
+Other areas are not open for external contributions.
+
+## Platform Support
+
+- Linux: x86_64, aarch64
+- macOS: ARM64 (Apple Silicon)
+- Windows: Not currently supported
+
+## LLM-friendly Documentation
+
+- Docs index: <https://docs.modular.com/llms.txt>
+- Mojo API docs: <https://docs.modular.com/llms-mojo.txt>
+- Python API docs: <https://docs.modular.com/llms-python.txt>
+- Comprehensive docs: <https://docs.modular.com/llms-full.txt>
+
+## Git commit style
+
+- **Atomic Commits:** Keep commits small and focused. Each commit should
+address a single, logical change. This makes it easier to understand the
+history and revert changes if needed.
+- **Descriptive Commit Messages:** Write clear, concise, and informative commit
+messages. Explain the *why* behind the change, not just *what* was changed. Use
+a consistent format (e.g., imperative mood: ""Fix bug"", ""Add feature"").
+- **Commit titles:** git commit titles should have the `[Stdlib]` or `[Kernel]`
+depending on whether the kernel is modified and if they are modifying GPU
+functions then they should use `[GPU]` tag as well.
+- The commit messages should be surrounded by BEGIN_PUBLIC and END_PUBLIC
+- Here is an example template a git commit"
+agents,elizaOS,eliza,https://github.com/elizaOS/eliza,AGENTS.md,50.28609195402299,,62.52396015660986,"# Repository Guidelines
+
+## Project Structure & Module Organization
+
+- Monorepo managed by `turbo` and `lerna`; scripts run with `bun`.
+- Source lives under `packages/*`:
+  - `core` (runtime, shared types), `server` (Express API), `client` (React UI), `cli` (elizaos CLI).
+  - Plugins and starters: `plugin-*`, `project-*`.
+- Other roots: `examples/` (standalone samples), `scripts/` (automation), `plugin-specification/*` (specs).
+
+## Build, Test, and Development Commands
+
+- Install: `bun install` (use Bun only).
+- Build all: `bun run build` (filters exclude app/config). Examples: `bun run build:core`, `bun run build:client`.
+- Dev/watch: `bun run dev` (monorepo), package-local: `cd packages/core && bun run dev`.
+- Start CLI locally: `bun run start` or `bun run start:app` for the app.
+- Tests (top level): `bun run test`, or per package:
+  - Core: `bun run test:core`
+  - Server: `cd packages/server && bun run test`
+  - Client unit: `cd packages/client && bun run test:unit`
+  - Client e2e: `cd packages/client && bun run test:e2e` (or `test:e2e:with-server`).
+
+## Coding Style & Naming Conventions
+
+- Language: TypeScript (ESM). Prefer Bun APIs; avoid Node-only modules where Bun equivalents exist.
+- Formatting: Prettier (2 spaces, semicolons, single quotes, trailing comma es5, width 100). Run `bun run format` or `format:check`.
+- Linting: `bun run lint` (Prettier; ESLint used in `client`).
+- Naming: camelCase (vars/functions), PascalCase (types/components), kebab-case for package folders.
+
+## Testing Guidelines
+
+- Unit tests with Bun test runner; name files `*.test.ts(x)` near sources.
+- Use `--coverage` when changing core/server: `bun run test:core` or `cd packages/server && bun run test:coverage`.
+- Client: component/unit via Bun/Testing Library; e2e via Cypress (`bun run cypress:open`).
+
+## Commit & Pull Request Guidelines
+
+- Conventional Commits: `feat:`, `fix:`, `chore:`, optional scope (e.g., `fix(server): ...`). Use `[skip ci]` for docs-only.
+- PRs must include: clear description, linked issues, test plan, screenshots for UI changes, and pass build/lint/tests.
+- Update docs/examples when behavior changes. Keep changes scoped to one concern.
+
+## Security & Config
+
+- Copy `.env.example` to `.env`; never commit secrets. Required: Node `23.x`, Bun `1.2.x`.
+- Post-install initializes submodules; if needed, rerun `bash ./scripts/init-submodules.sh`."
+agents,RSSNext,Folo,https://github.com/RSSNext/Folo,AGENTS.md,22.66496088749824,,49.65008890549703,"# AGENTS.md
+
+This file provides concise, agent-focused guidance for working in this monorepo. It consolidates the repository's CLAUDE.md guides, .cursor rules, Cursor rules improvements, and modern agent best practices.
+
+## Project overview
+
+- Monorepo managed by pnpm workspaces + Turbo.
+- Apps:
+  - `apps/desktop` – Electron app (Vite + React renderer is the primary web app)
+  - `apps/mobile` – React Native app via Expo
+  - `apps/ssr` – Minimal SSR site for external sharing
+- Shared packages: `packages/internal` (components, atoms, hooks, store, utils, database, etc.).
+
+## Setup commands
+
+ 
+
+## Quality gates (must-pass before commit/PR)
+
+ 
+
+- Run the above at the root, or use per-package variants as needed.
+- Follow this order strictly: typecheck → lint → test.
+
+## Code style and conventions
+
+- TypeScript strict; avoid `any` (use precise types). Comments in English. Keep solutions simple and maintainable.
+- Prefer CSS transitions/animations for simple UI interactions. Use JS-driven motion only when necessary to avoid frame drops.
+- Imports: use `pathe` instead of `node:path` for cross‑platform paths.
+- Organize shared, reusable UI in `packages/internal/components`; app-specific UI stays in its app.
+
+## Team preferences
+
+- Prefer CSS transitions/animations over JS-based motion for simple interactions to avoid frame drops.
+- Prefer simple, easy-to-maintain solutions.
+- Avoid using the `any` type in TypeScript.
+- Write code comments in English.
+
+## Architecture quick reference
+
+- State: Jotai for atoms, Zustand for complex stores, TanStack Query for server state.
+- Database: Drizzle + SQLite (see `packages/internal/database`).
+- Error handling: custom utils in `packages/internal/utils`; Sentry integrated.
+- i18n: i18next with flat keys only; no `defaultValue`. Provide `en`, `zh-CN`, `ja` for each feature. Avoid conflicting dotted keys.
+
+## UI system and design tokens
+
+### Tailwind + Apple UIKit colors (Desktop/Web)
+
+- Use Tailwind classes bound to Apple UIKit color tokens (light/dark adaptive). Prefix by CSS property:
+  - System colors: `text-red`, `bg-blue`, `border-gray`, etc. for `red|orange|yellow|green|mint|teal|cyan|blue|indigo|purple|pink|brown|gray`.
+  - Fill: `bg-fill[-secondary|-tertiary|-quaternary|-quinary]` and `bg-fill-vibrant[-secondary|-tertiary|-quaternary|-quinary]` (and `border-*` as needed).
+  - Text: `text-text`, `text-text-secondary|tertiary|quaternary|quinary`, `text-text-vibrant(-secondary|-tertiary|-quaternary|-quinary)`.
+  - Material: `bg-material-ultra-thick|thick|medium|thin|ultra-thin|opaque`.
+  - Control: `bg-control-enabled|disabled`.
+  - Interface: `bg-menu|popover|titlebar|sidebar|selection-focused|selection-focused-fill|selection-unfocused|selection-unfocused-fill|header-view|tooltip|under-window-background`.
+
+These classes map to the UIKit color variables (see `.cursor rules/color` and `apps/desktop/AGENTS.md`).
+
+### Icons (Desktop/Web)
+
+- Prefer MingCute with `i-mgc-` prefix (e.g., `i-mgc-copy-cute-re`). Use `i-mingcute-` only if no `i-mgc-` exists.
+
+### Motion (Desktop/Web)
+
+- Use Framer Motion with LazyMotion via `m` from `motion/react` (e.g., `m.div`).
+- Prefer spring presets from `@follow/components/constants/spring.js` (`Spring.presets.smooth|snappy|bouncy`).
+- For simple micro-interactions, prefer CSS transitions first.
+
+### React Native (Mobile)
+
+- Styling: NativewindCSS; do not use external `StyleSheet.create` for new UI.
+- Icons: use `@/apps/mobile/icons` only.
+- Colors: use React Native UIKit color system (via `react-native-uikit-colors`) with Tailwind utilities:
+  - Backgrounds: `system-background`, `secondary-system-background`, `tertiary-system-background`.
+  - Grouped backgrounds: `system-grouped-background`, `secondary-system-grouped-background`, `tertiary-system-grouped-background`.
+  - Labels: `label`, `secondary-label`, `tertiary-label`, `quaternary-label`.
+  - Fills: `system-fill`, `secondary-system-fill`, `tertiary-system-fill`, `quaternary-system-fill`.
+  - Separators: `separator`, `opaque-separator`, `non-opaque-separator`.
+  - Semantic colors: `red|orange|yellow|green|mint|teal|cyan|blue|indigo|purple|pink|brown`, grays `gray..gray6`, and interactive `link`, `placeholder-text`.
+
+## Component placement
+
+1. Check existing components in `apps/desktop/layer/renderer/src/modules/renderer/components` for app-specific UI.
+2. If generic and reusable, implement in `packages/internal/components` and export from the package index.
+
+## Testing & CI tips
+
+- Use Vitest for unit tests; co-locate tests near source files.
+- After moving files or changing imports, run `pnpm lint` and `pnpm typecheck` for the affected package.
+- CI expects `pnpm typecheck`, `pnpm lint`, and `pnpm test` to pass before merge.
+
+## Agent workflow (Cursor-oriented improvements)
+
+- Status updates: provide brief progress notes when running tool batches.
+- Prefer semantic code search to explore unfamiliar areas; use exact grep only for symbols.
+- Default to parallelizing independent searches/reads to reduce latency.
+- Avoid multi-line speculative edits; keep edits minimal and targeted; preserve existing indentation.
+- When editing TypeScript, do not introduce `any`; keep types precise.
+- For UI, prefer CSS transitions for simple effects; use Framer Motion `m.*` only when needed.
+
+## Context7 (up-to-date docs)
+
+- Use Context7 to fetch current library docs before using APIs prone to change.
+- Workflow:
+  1. Resolve a library ID: resolve the library (e.g., React Native, Vite, TanStack Query).
+  2. Fetch docs scoped to the topic (e.g., hooks, routing).
+  3. Integrate code examples following our style rules.
+
+## Sequential Thinking (step-by-step problem solving)
+
+- Break work into small thought steps:
+  1. Define immediate goal/assumption.
+  2. Use suitable tool (search, code edit, error explainer, docs).
+  3. Record the output/results.
+  4. Decide next step or branch alternatives; compare trade-offs.
+- Encourage rollback/iteration if new information contradicts prior steps.
+
+## Subproject guides
+
+- This root AGENTS.md sets global rules. Each app/package should include its own `AGENTS.md` (e.g., `apps/desktop/AGENTS.md`, `apps/mobile/AGENTS.md`). The closest guide to the edited file takes precedence when rules conflict.
+
+## Quick checklists
+
+- Implementation
+  - [ ] Is code placed in the right package/app?
+  - [ ] Type-safe (no `any`), readable names, English comments where needed.
+  - [ ] Uses correct UIKit Tailwind tokens and icon sources.
+  - [ ] For motion: CSS first; `m.*` only if necessary.
+
+- Validation
+  - [ ] `pnpm typecheck` passes
+  - [ ] `pnpm lint:fix` passes cleanly
+  - [ ] Tests updated and pass"
