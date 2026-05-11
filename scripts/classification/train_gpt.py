@@ -13,6 +13,10 @@ import pandas as pd
 import requests
 import tiktoken
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 # -----------------------------------------------------------------------------
 # 1. Configuration
 # -----------------------------------------------------------------------------
@@ -99,7 +103,7 @@ FEW_SHOT_EXAMPLES = [
 ]
 
 ### Load LaTeX label examples file and include its plain text for context.
-LABEL_EXAMPLES_PATH = Path(__file__).resolve().parent / "label_examples.txt"
+LABEL_EXAMPLES_PATH = PROJECT_ROOT / "manifest_analysis" / "classification" / "label_examples.txt"
 
 def load_label_examples_text() -> str:
     """Read `label_examples.txt` and return as plain text (falls back to empty string)."""
@@ -116,7 +120,7 @@ LABEL_EXAMPLES_TEXT = load_label_examples_text()
 # -----------------------------------------------------------------------------
 # 2. Utilities
 # -----------------------------------------------------------------------------
-from utils import truncate_to_tokens, fetch_file_content
+from manifest_analysis.utils.text import truncate_to_tokens, fetch_file_content
 
 
 class GPTClassifier:
