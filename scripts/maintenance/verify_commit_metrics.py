@@ -2,8 +2,17 @@
 Verify and display statistics for the newly added commit metrics
 """
 
+from __future__ import annotations
+
 import csv
+import sys
 from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from manifest_analysis.datasets.registry import iter_manifest_datasets
 
 def analyze_commit_metrics(csv_path, dataset_name):
     """Analyze the newly added metrics in a commit dataset."""
@@ -69,18 +78,10 @@ def main():
     print("Commit Metrics Verification")
     print("="*80)
     
-    datasets_dir = Path(__file__).parent.parent / 'datasets'
-    
-    datasets = [
-        ('claude_commit_changes.csv', 'Claude Commit Changes'),
-        ('agents_commit_changes.csv', 'Agents Commit Changes'),
-        ('copilot-instructions_commit_changes.csv', 'Copilot-Instructions Commit Changes')
-    ]
-    
-    for filename, name in datasets:
-        csv_path = datasets_dir / filename
+    for dataset in iter_manifest_datasets():
+        csv_path = dataset.commit_changes_path
         if csv_path.exists():
-            analyze_commit_metrics(csv_path, name)
+            analyze_commit_metrics(csv_path, f"{dataset.key} commit changes")
         else:
             print(f"\n⚠️  File not found: {csv_path}")
     

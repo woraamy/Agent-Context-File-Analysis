@@ -12,3 +12,9 @@ seaborn
 matplotlib
 plotly
 textstat
+py-readability-metrics
+nltk
+radon
+lizard
+py-readability-metrics
+textblob
