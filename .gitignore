@@ -97,6 +97,7 @@ celerybeat.pid
 
 # Virtual environments
 venv/
+myenv/
 env/
 ENV/
 .venv/
@@ -139,4 +140,5 @@ dmypy.json
 .env
 .cache
 .pyre/
+nltk_data_cache/
 tokens.txt
